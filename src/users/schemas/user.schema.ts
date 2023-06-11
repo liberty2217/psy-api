@@ -16,6 +16,12 @@ export class User {
   @Prop({ required: true })
   @IsNotEmpty()
   name: string;
+
+  @Prop({ default: false })
+  isEmailConfirmed: boolean;
+
+  @Prop({ default: null })
+  confirmationToken: string | null;
 }
 
 export type UserDocument = User & Document;

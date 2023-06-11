@@ -1,4 +1,11 @@
-import { Controller, Post, Body, ValidationPipe } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  ValidationPipe,
+  Get,
+  Param,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginDTO } from './dtos/login.dto';
 import { User } from 'src/users/schemas/user.schema';
@@ -15,5 +22,10 @@ export class AuthController {
   @Post('login')
   login(@Body(new ValidationPipe()) loginDto: LoginDTO) {
     return this.authService.login(loginDto);
+  }
+
+  @Get('confirmEmail/:token')
+  confirmEmail(@Param('token') token: string) {
+    return this.authService.confirmEmail(token);
   }
 }

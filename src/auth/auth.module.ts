@@ -5,6 +5,7 @@ import { UsersModule } from '../users/users.module';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
+import { MailService } from 'src/mail/mail.service';
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -18,7 +19,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy],
+  providers: [AuthService, JwtStrategy, MailService],
   exports: [AuthService], // You might want to inject AuthService in other modules
 })
 export class AuthModule {}
