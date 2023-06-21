@@ -6,6 +6,11 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
 import { MailService } from 'src/mail/mail.service';
+import { MongooseModule } from '@nestjs/mongoose';
+import {
+  RefreshToken,
+  RefreshTokenSchema,
+} from './schemas/refreshtoken.schema';
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -17,6 +22,9 @@ const JWT_SECRET = process.env.JWT_SECRET;
       secret: JWT_SECRET,
       signOptions: { expiresIn: '60m' },
     }),
+    MongooseModule.forFeature([
+      { name: RefreshToken.name, schema: RefreshTokenSchema },
+    ]),
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy, MailService],
