@@ -1,7 +1,3 @@
-## TO-DO
-
-- [ ] passwords should not be sent back to the client
-
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
